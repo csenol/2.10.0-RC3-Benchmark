@@ -22,7 +22,6 @@ object Bench extends App {
     def runTest() = {
       System.gc()
       val start = System.currentTimeMillis()
-      objCount = 0
       v.execute(n)
       System.currentTimeMillis() - start
     }
@@ -37,14 +36,20 @@ object Bench extends App {
        )   
     }
 
-    val cold = (0 to times).map(x => runTest())
-    val warm = (0 to times).map(x => runTest())
 
     println(v.name + "\n" + "_" * (v.name.length+10) + "\n")
+   
+    objCount = 0
+    val cold = (0 to times).map(x => runTest())
+    createReport("Cold", cold)
+
+    objCount = 0
+    val warm = (0 to times).map(x => runTest())
+    createReport("Warm", warm)
+
     
 
-    createReport("Cold", cold)
-    createReport("Warm", warm)
+
   }
   
   test(Sundaram, 3000000, args(0).toInt)
