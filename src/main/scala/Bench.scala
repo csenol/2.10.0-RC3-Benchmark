@@ -22,6 +22,7 @@ object Bench extends App {
     def runTest() = {
       System.gc()
       val start = System.currentTimeMillis()
+      objCount = 0
       v.execute(n)
       System.currentTimeMillis() - start
     }
@@ -41,14 +42,13 @@ object Bench extends App {
 
     println(v.name + "\n" + "_" * (v.name.length+10) + "\n")
     
-    objCount = 0
+
     createReport("Cold", cold)
-    objCount = 0
     createReport("Warm", warm)
   }
   
-  test(Sundaram, 3000000, 60)
-  test(Eratosthenes, 75000, 30)
+  test(Sundaram, 3000000, args(0).toInt)
+  test(Eratosthenes, 75000, args(1).toInt)
   //test(ParallelPrimes, 3000000, 10)
 
 }
