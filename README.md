@@ -8,13 +8,16 @@ to inspect object allocations. You can find it [here] (http://code.google.com/p/
 ## Usage
     sbt assembly
 
-This will create a jar file file in target with name bench2.10.jar. You can change scala version and sbt version by manipulating  build.sbt
+This will create a jar file in target with name bench2.10.jar. You can change scala version and sbt version by manipulating  build.sbt
 
     java -javaagent:lib/allocation.jar -jar target/bench2.10.jar  1 1
 
 This will instrument code and create a report. First Parameter for number of iterations on Sundaram second is for Eratosthenes
 
 ## Results
+30 times more allocation on Eratosthenes Becnmark with scala 2.9.2. Thats why it is so fast in 2.10
+
+
     java -javaagent:lib/allocation.jar -jar target/bench2.10.jar  1 1
     Sieve of Sundaram
     ___________________________
